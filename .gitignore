@@ -1,0 +1,4 @@
+# .gitignore
+
+# Critical: Never commit environment files that contain secrets
+.env

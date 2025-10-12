@@ -1,0 +1,7 @@
+fastapi                     # High-performance web framework
+uvicorn[standard]           # ASGI server to run FastAPI asynchronously
+python-multipart            # Required for FastAPI to parse 'multipart/form-data' (for files and form data)
+google-genai                # Official Google GenAI SDK for the Gemini API
+Pillow                      # The Python Imaging Library, essential for reading and processing uploaded images
+python-dotenv               # Used to securely load environment variables (like the GEMINI_API_KEY) from the .env file
+pydantic>=2.0               # Used by FastAPI and for your schemas (ContentRequest, ContentResponse)
