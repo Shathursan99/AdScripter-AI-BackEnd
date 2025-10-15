@@ -40,6 +40,7 @@ app.include_router(content_router)
 origins = [
     "http://localhost:8080",  
     "http://127.0.0.1:3000",
+    "https://adscriptor-ai.vercel.app"
    
 ]
 app.add_middleware(
