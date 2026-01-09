@@ -23,27 +23,25 @@ async def generate_content_from_images(
     if AI_CLIENT is None:
         raise ConnectionError("Gemini client is not initialized. Application startup failed.")
 
-    # --- NEW CONDITIONAL LOGIC ---
     target_platform = user_context.get('post_medium', '').lower()
     
     if target_platform in ['instagram', 'facebook']:
-        # Social Media: Short, attention-grabbing, with points.
         description_format_instruction = (
-            "Write an attractive and concise product description (approx. 50 words). "
-            "Use 2-3 short, impactful bullet points to highlight key features for quick social media reading."
+            "Write an attractive and concise product description (25-35 words) tailored to the target platform tone. "
+            "Use 1-2 short, impactful bullet points to highlight key features for quick social media reading. Add 1-2 relevant emojis if natural for the platform."
         )
         caption_instruction = (
-            "Write a short, engaging social media caption (2-3 sentences) optimized for the style of the "
-            f"Target Platform ({target_platform})."
+            "Write a single-sentence social media caption (10-15 words) optimized for the style of the "
+            f"Target Platform ({target_platform}). Add 1-2 relevant emojis if natural for the platform."
         )
     else:
         # Marketplace/E-commerce (Daraz, ikman.lk, eBay, Amazon): Detailed, SEO-focused blocks.
         description_format_instruction = (
-            "Write a comprehensive, SEO-optimized product description (approx. 50 words). "
-            "Use clear headings and a brief, easy-to-read paragraph format suitable for a marketplace listing."
+            "Write a comprehensive, SEO-optimized product description (25-35 words) tailored to the target platform expectations. "
+            "Use a brief, easy-to-read paragraph format suitable for a marketplace listing. Avoid emojis unless the platform commonly uses them."
         )
         caption_instruction = (
-            "Write a brief, direct summary (2-3 sentences) suitable as a short product headline/summary."
+            "Write a brief, direct summary (10-15 words, single sentence) suitable as a short product headline/summary. Avoid emojis unless the platform commonly uses them."
         )
     # --- END CONDITIONAL LOGIC ---
 
@@ -69,7 +67,7 @@ async def generate_content_from_images(
     1. **Description (seo_description field):** {description_format_instruction}
     2. **Caption (social_caption field):** {caption_instruction}
     3. **Hashtags:** Generate a list of 8 relevant, trending, and SEO-friendly hashtags.
-    4. **Product Summary:** Provide a 1-sentence summary of the product and its target audience.
+    4. **Product Summary:** Provide a 1-sentence summary (10-15 words) of the product and its target audience.
     
     Return the result strictly as a JSON object matching the ContentResponse schema.
     """
