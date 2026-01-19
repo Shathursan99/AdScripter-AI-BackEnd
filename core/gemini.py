@@ -1,4 +1,3 @@
-# core/gemini.py
 
 import io
 from typing import List
